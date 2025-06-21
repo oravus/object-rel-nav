@@ -338,7 +338,7 @@ class DepthAnythingCore(nn.Module):
         img_size = kwargs.pop("img_size", [384, 384])
         
         depth_anything = DPT_DINOv2(out_channels=[256, 512, 1024, 1024], use_clstoken=False)
-        p = Path().cwd() / 'libs/depth/depth_anything/metric_depth/zoedepth/models/base_models/base_models/checkpoints/depth_anything_vitl14.pth'
+        p = Path().cwd() / 'model_weights/depth_anything_vitl14.pth'
         state_dict = torch.load(p,
                                 map_location='cpu')
         # state_dict = torch.load(str(Path(__file__).parents[0] / 'checkpoints/depth_anything_vitl14.pth'), map_location='cpu')
