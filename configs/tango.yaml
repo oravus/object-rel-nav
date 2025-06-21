@@ -1,0 +1,81 @@
+# required paths
+path_dataset: './data/'
+path_models: ''
+path_results: './out/results/'
+
+# episode/task settings
+start_idx: 0
+step_idx: 1
+end_idx: 108
+
+reverse: False
+task_type: "original"
+use_gt_localization: False
+env: "sim"
+
+split: "val"
+threshold_goal_distance: 1.0
+max_start_distance: "hard" # from ["easy", "hard", "full"]
+max_steps: 500
+
+exp_name: "tango"
+
+# running from list of winners or failure or no good
+run_list: '' #'winners'  #  ['', 'winners', 'failures', 'no_good']
+path_run: ''
+
+# controller and mapping params
+method: 'tango'
+segmentor: 'fast_sam' # [sim, fast_sam, sam, sam2, sam21]
+goal_source: 'topological'  # [gt_metric, gt_topological, gt_topometric, topological]
+graph_filename: null
+infer_depth: True
+infer_traversable: True
+
+# logging and display
+log_wandb: False
+log_robot: True
+debug: False
+except_exit: False # set True to disable try/except, print traceback, & exit
+
+# tango's visualization panel
+plot: True
+save_vis: True
+# dump_episode_images: 0
+
+cull_qry_instances: False
+cull_map_instances: False
+
+sim:
+  hfov: 120
+  width: 320
+  height: 240
+  sensor_height: 0.4 # [0.4, 1.31, 1.5]
+  sensor_height_map: 1.31 # [0.4, 1.31, 1.5]
+
+goal_gen:
+  textLabels: [] # ["floor", "ceiling", "ground"] # from [[], <list of labels to remove>
+
+  # matcher
+  matcher_name: "lightglue" # used during loc [lightglue, sam2, superpoint-lg ...]
+  map_matcher_name: "lightglue" # used during mapping [lightglue, sam2]
+  geometric_verification: True # this has no effect if matcher_name is lightglue
+  match_area: False
+
+  # planner
+  edge_weight_str: "margin" #["margin", "geodesic_(max,min,avg)", "e3d", null (=None in python)]
+  goalNodeIdx: null
+  use_goal_nbrs: True
+  plan_da_nbrs: True # won't affect e3d/geodesic weight strings
+  preplan_to_goals_only: False
+  rewrite_graph_with_allPathLengths: False
+
+  # localizer
+  loc_radius: 4
+  subsample_ref: 1
+  reloc_rad_add: 2
+  reloc_rad_max: 15
+  min_num_matches: 0
+
+  # tracker
+  do_track: False
