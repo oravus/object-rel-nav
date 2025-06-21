@@ -25,7 +25,9 @@ In `./data/`, sym link the following downloads as subdirs: `hm3d v0.2`, `instanc
 - Download official `hm3d v0.2` following instructions [here](https://github.com/matterport/habitat-matterport-3dresearch).
 - Download official `InstanceImageNav` challenge dataset from [here](https://dl.fbaipublicfiles.com/habitat/data/datasets/imagenav/hm3d/v3/instance_imagenav_hm3d_v3.zip) (Direct Link | ~512 mb)
 - Download our test trajectory data `hm3d_iin_val` from [here](https://drive.google.com/file/d/18yhsuz52QvWQ8gQHeWXLAaqoa6T6jk0O/view?usp=sharing). 
-- Download depth anything model weights from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints_metric_depth) and its base vit from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints) and place them in `model_weights/`
+
+#### Models
+Download depth anything model weights from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints_metric_depth) and its base vit from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints) and place them in `model_weights/`
 
 ## Experiment
 Modify `configs/tango.yaml` to run an experiment as:
