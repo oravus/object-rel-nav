@@ -39,8 +39,8 @@ debug: False
 except_exit: False # set True to disable try/except, print traceback, & exit
 
 # tango's visualization panel
-plot: True
-save_vis: True
+plot: False
+save_vis: False
 # dump_episode_images: 0
 
 cull_qry_instances: False
