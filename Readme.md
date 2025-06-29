@@ -30,15 +30,27 @@ In `./data/`, sym link the following downloads as subdirs: `hm3d v0.2`, `instanc
 Download depth anything model weights from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints_metric_depth) and its base vit from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints) and place them in `model_weights/`
 
 ## Experiment
-Modify `configs/tango.yaml` to run an experiment as:
+### Navigation
+For quickly running a navigation episode using robohop controller (it uses `configs/defaults.yaml` which has comments explaining the parameters):
 
-`python main.py -c configs/tango.yaml`
+```
+python main.py
+```
+
+
+To use TANGO controller (or your own config), run:
+
+```
+python main.py -c configs/tango.yaml
+```
 
 Check the output dir `./out/` for `output.log` and visualizations.
 
-#### Creating RoboHop's Topological Graph
-To create a topological graph given a folder of RGB images:
+### Creating RoboHop's Topological Graph
+To create a topological graph given a folder of RGB images, please see/run this example script:
 
-`python scripts/create_maps_hm3d.py ./data/hm3d_iin_val/ fast_sam None 0 1`
+```
+python scripts/create_maps_hm3d.py ./data/hm3d_iin_val/ fast_sam None 0 1
+```
 
 
