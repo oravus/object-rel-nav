@@ -1,0 +1,81 @@
+# required paths
+path_dataset: './data/' # symlink different datasets within this folder
+path_models: ''
+path_results: './out/results/' # output folder for results
+
+# episode/task settings
+start_idx: 0 # start index for episodes
+step_idx: 3 # step index for episodes
+end_idx: 108 # end index for episodes
+
+reverse: False # Ignore
+task_type: "original" # refers to the teach-and-repeat / imitate task
+use_gt_localization: True # if True, oracle decides the localizedImgIdx
+env: "sim" # TODO: include "real"
+
+split: "val"
+threshold_goal_distance: 1.0 # evaluation threshold for success
+max_start_distance: "hard" # from ["easy", "hard", "full"] to decide trajectory length of the mapping run
+max_steps: 250 # max number of steps for an agent in an episode
+
+exp_name: "gt_metric_robohop" # unique name for the experiment
+
+# running from list of winners or failure or no good
+run_list: '' #'winners'  #  ['', 'winners', 'failures', 'no_good']
+path_run: ''
+
+# controller and mapping params
+method: 'robohop' # select controller from ['robohop', 'tango', 'pixnav']
+segmentor: 'fast_sam'
+goal_source: 'gt_metric' # from [gt_metric, gt_topological, topological] to select how the goal is generated (see Tango paper)
+graph_filename: null # Ignore
+infer_depth: True # use depth_anything instead of sim_depth
+infer_traversable: True # use fast_sam + CLIP instead of sim instances 
+
+# logging and display
+log_wandb: False
+log_robot: True # Tango's output logging
+debug: False
+except_exit: False # set True to disable try/except, print traceback, & exit
+
+# tango's visualization panel
+plot: False
+save_vis: False
+# dump_episode_images: 0
+
+cull_qry_instances: False # Ignore
+cull_map_instances: False # Remove specific categories (e.g., "floor", "ceiling") from the map graph
+
+sim:
+  hfov: 120
+  width: 320
+  height: 240
+  sensor_height: 0.4 # [0.4, 1.31, 1.5]
+  sensor_height_map: 1.31 # [0.4, 1.31, 1.5]
+
+goal_gen:
+  textLabels: [] # ["floor", "ceiling", "ground"] # from [[], <list of labels to remove>
+
+  # matcher
+  matcher_name: "lightglue" # used during loc [lightglue, sam2 ...]
+  map_matcher_name: "lightglue" # used during mapping [lightglue, sam2]
+  geometric_verification: True # this has no effect if matcher_name is lightglue
+  match_area: False
+
+  # planner
+  edge_weight_str: "margin" # ["margin", "geodesic_(max,min,avg)", "e3d", null (=None in python)]
+  goalNodeIdx: null # used to set specific index for real-world experiments
+  use_goal_nbrs: True # use goal node's neighbor nodes from the same image as well during planning
+  plan_da_nbrs: True # include goal node's neighbors based on data association (da) 
+  preplan_to_goals_only: False # to save storage & time, precompute paths to goal nodes only
+  rewrite_graph_with_allPathLengths: False
+
+  # localizer
+  loc_radius: 4
+  subsample_ref: 1 # skip every nth reference image
+  reloc_rad_add: 2 
+  reloc_rad_max: 15
+  min_num_matches: 0 # threshold on num matches to decide if robot is lost/localized
+
+  # tracker
+  do_track: False

@@ -193,7 +193,7 @@ def parse_args():
         "--config_file",
         "-c",
         help="Path to the config file",
-        default="configs/tango.yaml",
+        default="configs/defaults.yaml",
     )
     return parser.parse_args()
 
@@ -208,7 +208,7 @@ if __name__ == "__main__":
         logger.warning(
             f"Using default config file, create {config_file} to customise the parameters"
         )
-        config_file = "defaults.yaml"
+        config_file = "configs/defaults.yaml"
 
     if os.path.exists(config_file):
         with open(config_file, "r") as f:
