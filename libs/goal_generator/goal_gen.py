@@ -13,7 +13,7 @@ logger = logging.getLogger("[Goal Generator]") # logger level is explicitly set 
 
 from libs.localizer import loc_topo
 from libs.planner_global import plan_topo
-# from libs.tracker import track_topo
+from libs.tracker import track_topo
 from libs.common import utils, utils_data
 from libs.common import utils_visualize as utils_viz
 from libs.logger.level import LOG_LEVEL
@@ -58,7 +58,7 @@ class Goal_Gen:
 
         self.do_track = self.cfg["do_track"]
         if self.do_track:
-            self.tracker = None
+            self.tracker = track_topo.TrackTopological(self.W, self.H, self.max_pl, self.cfg)
 
     def set_variables_init(self):
         self.qryCoords, self.qryMasks, self.pls, self.pls_min, self.local_pls_min, self.pls_median, self.local_pls_median, self.matchPairs, self.coords = [None for _ in range(9)]

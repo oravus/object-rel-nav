@@ -711,6 +711,33 @@ class Episode:
                     self.control_input_learnt[1]
                 )
 
+        elif goal_source == 'image_topological':
+            if control_method == 'learnt':
+                plan_shift = 1
+                if self.args.use_gt_localization:
+                    if self.args.reverse:
+                        plan_shift = -1
+                    self.goalie.goal_idx = goal_img_idx + plan_shift
+
+                if self.args.use_gt_localization and self.goalie.config['fixed_plan']:
+                    img_goal = self.goalie.map_images[min(
+                        self.goalie.goal_idx, self.goalie.num_map_images - 1)]
+                else:
+                    start = max(self.goalie.goal_idx -
+                                self.goalie.loc_radius, 0)
+                    end = min(
+                        self.goalie.goal_idx + self.goalie.loc_radius + 1, self.goalie.num_map_images)
+                    img_goal_list = self.goalie.map_images[start:end]
+                    self.goalie.goal_idx = self.goal_controller.predict_goal_idx(
+                        rgb, img_goal_list, self.args.reverse)
+                    img_goal = img_goal_list[self.goalie.goal_idx]
+                    self.goalie.goal_idx += start
+                self.control_input_learnt = img_goal
+                self.goal_mask = img_goal.copy()
+            else:
+                raise NotImplementedError(
+                    f'{goal_source=} only defined for {control_method=}...')
+
         else:
             raise NotImplementedError(f"{self.args.goal_source} is not available...")
 
@@ -757,9 +784,14 @@ class Episode:
             if not (step % 63) or self.discrete_action == 0:
                 self.goal_controller.reset(rgb, self.pixnav_goal_mask.astype(np.uint8))
             self.discrete_action, predicted_mask = self.goal_controller.step(
-                rgb, self.collided
-            )
-
+                rgb, self.collided)
+        elif control_method == 'learnt':
+            if self.control_input_learnt[0] is None or self.control_input_learnt[1] is None:
+                self.velocity_control, self.theta_control, self.vis_img = 0, 0, self.vis_img_default.copy()
+            else:
+                self.velocity_control, self.theta_control, self.vis_img = self.goal_controller.predict(
+                    rgb, self.control_input_learnt)
+            self.controller_logs = self.goal_controller.controller_logs
         else:
             raise NotImplementedError(f"{self.args.method} is not available...")
         return goals_image
@@ -859,10 +891,8 @@ class Episode:
                 "theta_control": self.theta_control,
                 "collided": self.collided,
                 "discrete_action": self.discrete_action,
-                "agent_states": (
-                    self.agent.get_state() if self.agent is not None else None
-                ),
-                # "controller_logs": self.controller_logs[-1] if self.controller_logs is not None and len(self.controller_logs) > 0 else None,
+                "agent_states": self.agent.get_state() if self.agent is not None else None,
+                "controller_logs": self.controller_logs[-1] if self.controller_logs is not None and len(self.controller_logs) > 0 else None,
             }
 
             self.update_results_dict(results_dict_curr)
@@ -1075,7 +1105,8 @@ def init_results_dir_and_save_cfg(args, default_logger=None):
 
 def preload_models(args):
     # preload some models before iterating over the episodes
-    goal_controller = None
+    goal_controller = model_loader.get_controller_model(
+        args.method, args.goal_source, args.controller["config_file"])
 
     segmentor = None
     if args.goal_source == "topological":

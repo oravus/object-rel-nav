@@ -1,0 +1,92 @@
+# required paths
+path_dataset: './data/'
+path_models: ''
+path_results: './out/results_tmp/'
+
+# episode/task settings
+start_idx: 0
+step_idx: 3
+end_idx: 108
+
+reverse: False
+task_type: "original" # from ["original", "alt_goal", "via_alt_goal"]
+use_gt_localization: True
+env: "sim" # from ["sim", "real"]
+
+split: "val" # from ["train", "val"]
+threshold_goal_distance: 1.0
+max_start_distance: "hard" # from ["easy", "hard", "full"]
+max_steps: 500
+
+exp_name: "object_react_corl2025"
+
+# running from list of winners or failure or no good
+run_list: '' #'winners'  #  ['', 'winners', 'failures', 'no_good']
+path_run: ''
+
+# controller and mapping params
+method: 'learnt'
+segmentor: 'fast_sam' # [sim, fast_sam, sam, sam2, sam21]
+goal_source: 'topological'  # [gt_metric, gt_topological, gt_topometric, topological]
+graph_filename: 'nodes_sam21_graphObject_4_lightglue_depth_inferred.pickle' # [null, "<specify>"]
+infer_depth: False
+infer_traversable: False
+
+# logging and display
+log_wandb: False
+log_robot: True
+debug: False
+except_exit: True # set True to disable try/except, print traceback, & exit
+
+# tango's visualization panel
+plot: False
+save_vis: False
+# dump_episode_images: 0
+
+cull_qry_instances: False
+cull_map_instances: False
+cull_map_method: 'fast_sam' # from ['sim', 'fast_sam']
+cull_map_strategy: 'edge_remove' # from ['edge_reweight_da', 'edge_remove']
+
+sim:
+  hfov: 120
+  width: 320
+  height: 240
+  sensor_height: 0.4 # [0.4, 1.31, 1.5]
+  sensor_height_map: 1.31 # [0.4, 1.31, 1.5]
+
+goal_gen:
+  textLabels: [] # ["floor", "ceiling", "ground"] # from [[], <list of labels to remove>
+
+  # matcher
+  matcher_name: "lightglue" # used during loc [lightglue, sam2, superpoint-lg ...]
+  map_matcher_name: "lightglue" # used during mapping [lightglue, sam2]
+  geometric_verification: True # this has no effect if matcher_name is lightglue
+  match_area: False
+
+  # planner
+  edge_weight_str: "e3d_max" #["margin", "geodesic_(max,min,avg)", "e3d", null (=None in python)]
+  goalNodeIdx: null
+  use_goal_nbrs: False
+  plan_da_nbrs: False # won't affect e3d/geodesic weight strings
+  preplan_to_goals_only: False
+  rewrite_graph_with_allPathLengths: False
+
+  # localizer
+  loc_radius: 16
+  subsample_ref: 2
+  reloc_rad_add: 2
+  reloc_rad_max: 15
+  min_num_matches: 0
+  offset_localizedImgIdx: 0
+
+  # tracker
+  do_track: True
+
+controller:
+  config_file: "configs/object_react_controller.yaml"
+  # following only used with real_remote
+  v_min: 0.05
+  v_max: 0.2
+  w_min: -0.3
+  w_max: 0.3

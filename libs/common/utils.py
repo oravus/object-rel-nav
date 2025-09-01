@@ -87,6 +87,13 @@ def get_default_args():
             'sensor_height_map': 1.31
 
         },
+        'controller': {
+            'config_file': 'configs/gnm_test.yaml',
+            'v_min': 0.0,
+            'v_max': 0.5,
+            'w_min': -0.5,
+            'w_max': 0.5,
+        },
     }
     # args_dict as attributes of args
     return dict_to_args(args_dict)
