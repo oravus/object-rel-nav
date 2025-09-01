@@ -1,7 +1,7 @@
 # required paths
 path_dataset: './data/'
 path_models: ''
-path_results: './out/results_tmp/'
+path_results: './out/results/'
 
 # episode/task settings
 start_idx: 0
@@ -16,7 +16,7 @@ env: "sim" # from ["sim", "real"]
 split: "val" # from ["train", "val"]
 threshold_goal_distance: 1.0
 max_start_distance: "hard" # from ["easy", "hard", "full"]
-max_steps: 500
+max_steps: 300
 
 exp_name: "object_react_corl2025"
 
@@ -27,8 +27,8 @@ path_run: ''
 # controller and mapping params
 method: 'learnt'
 segmentor: 'fast_sam' # [sim, fast_sam, sam, sam2, sam21]
-goal_source: 'topological'  # [gt_metric, gt_topological, gt_topometric, topological]
-graph_filename: 'nodes_sam21_graphObject_4_lightglue_depth_inferred.pickle' # [null, "<specify>"]
+goal_source: 'gt_topometric'  # [gt_metric, gt_topological, gt_topometric, topological]
+graph_filename: null # [null, "<specify>"]
 infer_depth: False
 infer_traversable: False
 
@@ -36,7 +36,7 @@ infer_traversable: False
 log_wandb: False
 log_robot: True
 debug: False
-except_exit: True # set True to disable try/except, print traceback, & exit
+except_exit: False # set True to disable try/except, print traceback, & exit
 
 # tango's visualization panel
 plot: False
@@ -44,7 +44,7 @@ save_vis: False
 # dump_episode_images: 0
 
 cull_qry_instances: False
-cull_map_instances: False
+cull_map_instances: True
 cull_map_method: 'fast_sam' # from ['sim', 'fast_sam']
 cull_map_strategy: 'edge_remove' # from ['edge_reweight_da', 'edge_remove']
 
@@ -65,7 +65,7 @@ goal_gen:
   match_area: False
 
   # planner
-  edge_weight_str: "e3d_max" #["margin", "geodesic_(max,min,avg)", "e3d", null (=None in python)]
+  edge_weight_str: "e3d" #["margin", "geodesic_(max,min,avg)", "e3d(_max)", null (=None in python)]
   goalNodeIdx: null
   use_goal_nbrs: False
   plan_da_nbrs: False # won't affect e3d/geodesic weight strings
