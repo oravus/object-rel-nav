@@ -79,3 +79,55 @@ goal_gen:
 
   # tracker
   do_track: False
+
+# CoRL2025 specific
+episode_blacklists:
+  all_tasks: [
+    'CrMo8WxCyVb_0000016_chair_411_',
+    'LT9Jq6dN3Ea_0000000_tv_monitor_21_',
+    'Nfvxx8J5NCo_0000009_bed_267_',
+    'k1cupFYWXJ6_0000000_sofa_19_',
+    'k1cupFYWXJ6_0000008_chair_594_',
+    'VBzV5z6i1WS_0000000_tv_monitor_43_',
+  ]
+  original: []
+  original_reverse: [
+    # Goal is full frame:
+    "GLAQ4DNUx5U_0000000_plant_22_",
+    # Goal is incorrect:
+    "6s7QHgap2fW_0000000_tv_monitor_34_",
+    # Could not find a valid start state:
+    "svBbv1Pavdk_0000000_plant_7_",
+    # Entire floor of a room is the goal (already globally ignored):
+    "LT9Jq6dN3Ea_0000000_tv_monitor_21_",
+  ]
+  alt_goal_v2: [
+    "5cdEh9F2hJL_0000000_toilet_36_",
+    "7MXmsvcQjpJ_0000000_chair_16_",
+    "CrMo8WxCyVb_0000000_toilet_33_",
+    "DYehNKdT76V_0000000_toilet_115_",
+    "TEEsavR23oF_0000000_tv_monitor_10_",
+    "VBzV5z6i1WS_0000000_tv_monitor_43_",
+    "XB4GS9ShBRE_0000000_tv_monitor_8_",
+    "a8BtkwhxdRV_0000000_toilet_18_",
+    "q3zU7Yy5E5s_0000000_bed_23_",
+    # Agent reaches goal, but cannot succeed due to goal height/obstacles:
+    "Dd4bFSTQ8gi_0000000_sofa_9_",
+    # Goal is in a different room that would barely be visible to any agent:
+    "qyAac8rV8Zk_0000000_tv_monitor_8_",
+  ]
+  via_alt_goal: [
+    # Goal is large sofa, which can be reached but still fail if on the wrong side:
+    "BAbdmeyTvMZ_0000000_chair_68_",
+    # Start of episode presents a see-through wall:
+    "MHPLjHsuG27_0000000_tv_monitor_17_",
+    # Missing agent_states.npy:
+    "a8BtkwhxdRV_0000000_toilet_18_",
+    # Non-traversible area on way to goal:
+    "cvZr5TUy5C5_0000000_chair_31_",
+    # Start faces a wall at a dead end:
+    "yr17PDCnDDW_0000000_plant_32_",
+    # Alt goal is on the way:
+    "5cdEh9F2hJL_0000000_toilet_36_",
+    "Dd4bFSTQ8gi_0000000_sofa_9_",
+  ]
