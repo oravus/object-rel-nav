@@ -58,6 +58,9 @@ sim:
 goal_gen:
   textLabels: [] # ["floor", "ceiling", "ground"] # from [[], <list of labels to remove>
 
+  # segmentor
+  map_segmentor_name: "sam21" # used during mapping [fast_sam, sam21]
+
   # matcher
   matcher_name: "lightglue" # used during loc [lightglue, sam2, superpoint-lg ...]
   map_matcher_name: "lightglue" # used during mapping [lightglue, sam2]

@@ -54,6 +54,9 @@ def get_default_args():
         'goal_gen': {
             'textLabels': [],
 
+            # segmentor
+            'map_segmentor_name': 'fast_sam'
+
             # matcher
             'matcher_name': 'lightglue',
             'map_matcher_name': 'lightglue',

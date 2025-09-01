@@ -249,15 +249,14 @@ class Episode:
             if self.args.graph_filename is not None:
                 graph_filename = self.args.graph_filename
             elif goal_source == "topological":
-                segmentor_name = self.args.segmentor.lower()
                 suffix_str_depth = ""
                 if self.args.goal_gen["edge_weight_str"] in [
                     "e3d_max",
                     "e3d_avg",
                     "e3d_min",
                 ]:
-                    suffix_str_depth = f"_depth_sim"
-                graph_filename = f'nodes_{segmentor_name}_graphObject_4_{self.args.goal_gen["map_matcher_name"]}{suffix_str_depth}.pickle'
+                    suffix_str_depth = f"_depth_inferred"
+                graph_filename = f'nodes_{self.args.goal_gen["map_segmentor_name"]}_graphObject_4_{self.args.goal_gen["map_matcher_name"]}{suffix_str_depth}.pickle'
             elif goal_source == "gt_topological":
                 graph_filename = "nodes_graphObject_4.pickle"
             elif goal_source == "gt_topometric":
