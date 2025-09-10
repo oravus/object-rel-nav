@@ -62,13 +62,14 @@ python main.py
 ```
 
 
-To use ObjectReact or TANGO controller (or your own config), run as:
+To use ObjectReact or TANGO controller (`tango.yaml`, or your own config), run as:
 
 ```
 python main.py -c configs/object_react.yaml
 ```
 
-Check the output dir `./out/` for `output.log` and visualizations.
+Check the output dir `./out/` for `output.log` and visualizations. The above config uses ground truth perception for a quick start, set `goal_source='topological'` and `edge_weight_str='e3d_max'` to use inferred perception.
+
 
 ### Creating RoboHop's Topological Graph
 To create a topological graph given a folder of RGB images, please see/run this example script:
