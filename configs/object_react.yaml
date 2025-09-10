@@ -87,7 +87,7 @@ goal_gen:
   do_track: True
 
 controller:
-  config_file: "configs/object_react_controller.yaml"
+  config_file: "configs/controller/object_react_controller.yaml"
   # following only used with real_remote
   v_min: 0.05
   v_max: 0.2
