@@ -256,11 +256,11 @@ class Episode:
                     "e3d_min",
                 ]:
                     suffix_str_depth = f"_depth_inferred"
-                graph_filename = f'nodes_{self.args.goal_gen["map_segmentor_name"]}_graphObject_4_{self.args.goal_gen["map_matcher_name"]}{suffix_str_depth}.pickle'
+                graph_filename = f'nodes_{self.args.goal_gen["map_segmentor_name"]}_{self.args.goal_gen["map_matcher_name"]}{suffix_str_depth}.pickle'
             elif goal_source == "gt_topological":
-                graph_filename = "nodes_graphObject_4.pickle"
+                graph_filename = "nodes_gt_topological.pickle"
             elif goal_source == "gt_topometric":
-                graph_filename = "nodes_graphObject_4_gt_topometric.pickle"
+                graph_filename = "nodes_gt_topometric.pickle"
 
             self.path_graph = self.path_episode / graph_filename
             if not self.path_graph.exists():
