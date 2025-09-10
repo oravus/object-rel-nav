@@ -626,7 +626,7 @@ class Episode:
             self.control_input_robohop = semantic_instance
 
             if not control_method == "learnt":
-                # remove the naughty masks
+                # remove masks
                 self.goal_mask[np.isin(semantic_instance, self.bad_goal_classes)] = 99
 
             masks = (
@@ -757,7 +757,7 @@ class Episode:
                 255.0
                 - 255 * (utils_viz.goal_mask_to_vis(goals_image, outlier_min_val=255))
             ).astype(np.uint8)
-        # the new and (hopefully) improved controller
+
         elif control_method == "tango":
             self.velocity_control, self.theta_control, goals_image_ = (
                 self.goal_controller.control(
@@ -784,6 +784,7 @@ class Episode:
                 self.goal_controller.reset(rgb, self.pixnav_goal_mask.astype(np.uint8))
             self.discrete_action, predicted_mask = self.goal_controller.step(
                 rgb, self.collided)
+
         elif control_method == 'learnt':
             if self.control_input_learnt[0] is None or self.control_input_learnt[1] is None:
                 self.velocity_control, self.theta_control, self.vis_img = 0, 0, self.vis_img_default.copy()
@@ -791,6 +792,7 @@ class Episode:
                 self.velocity_control, self.theta_control, self.vis_img = self.goal_controller.predict(
                     rgb, self.control_input_learnt)
             self.controller_logs = self.goal_controller.controller_logs
+
         else:
             raise NotImplementedError(f"{self.args.method} is not available...")
         return goals_image
@@ -820,7 +822,7 @@ class Episode:
                 velocity=self.velocity_control,
                 steer=-self.theta_control,  # opposite y axis
                 time_step=self.time_delta,
-            )  # will add velocity control once steering is working
+            )
 
     def is_done(self):
         done = False
@@ -938,11 +940,10 @@ class Episode:
         self.vis.save_video_frame(self.vis_img)
 
     def init_plotting(self):
-        # TODO: better handle 'plt' (check with SP)
+        # TODO: better handle 'plt'
         import matplotlib
         import matplotlib.pyplot as plt
 
-        # matplotlib.use('Qt5Agg')  # need it on my environment on my system ------
         if self.args.save_vis:
             matplotlib.use("Agg")  # Use the Agg backend to suppress plots
 
