@@ -55,7 +55,7 @@ def get_default_args():
             'textLabels': [],
 
             # segmentor
-            'map_segmentor_name': 'fast_sam'
+            'map_segmentor_name': 'fast_sam',
 
             # matcher
             'matcher_name': 'lightglue',
