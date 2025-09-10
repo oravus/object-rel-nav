@@ -18,6 +18,11 @@ mamba install -c conda-forge ultralytics
 
 mamba install -c conda-forge tyro faiss-gpu scikit-image ipykernel spatialmath-python gdown utm seaborn wandb kaggle yacs
 
+# setup git submodule (for objectreact controller)
+git clone https://github.com/oravus/object-rel-nav.git
+cd object-rel-nav/
+git submodule update --init --recursive
+
 # install habitat-lab
 cd libs/
 git clone https://github.com/facebookresearch/habitat-lab.git
