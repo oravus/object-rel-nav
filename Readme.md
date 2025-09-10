@@ -1,5 +1,5 @@
-## [ObjectReact [CoRL'25]](https://object-react.github.io/) | [TANGO [ICRA'25]](https://podgorki.github.io/TANGO/) | [RoboHop [ICRA'24]](https://oravus.github.io/RoboHop/)
-Code for testing different controllers / trajectory planners for **Object-Relative Navigation**.
+## Object-Relative Navigation: [ObjectReact [CoRL'25]](https://object-react.github.io/) | [TANGO [ICRA'25]](https://podgorki.github.io/TANGO/) | [RoboHop [ICRA'24]](https://oravus.github.io/RoboHop/)
+Official code release to test different controllers / trajectory planners.
 
 ## Setup
 #### Environment
@@ -54,8 +54,8 @@ In `model_weights/`:
 </details>
 
 ## Experiment
-### Navigation
-For quickly running a navigation episode using robohop controller (it uses `configs/defaults.yaml` which has comments explaining the parameters):
+#### Navigation
+For quickly running a navigation episode using robohop controller (uses `configs/defaults.yaml`, with comments explaining the parameters):
 
 ```
 python main.py
@@ -71,7 +71,7 @@ python main.py -c configs/object_react.yaml
 Check the output dir `./out/` for `output.log` and visualizations. The above config uses ground truth perception for a quick start, set `goal_source='topological'` and `edge_weight_str='e3d_max'` to use inferred perception.
 
 
-### Creating RoboHop's Topological Graph
+#### Mapping: Topological Object-Level Graph
 To create a topological graph given a folder of RGB images, please see/run this example script:
 
 ```
