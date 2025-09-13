@@ -1,5 +1,5 @@
 
-load_run: model_weights/gnm_2025_04_10_00_52_20_hm3dBB3Sh4ES10_GTTM_ObNone_perturb0.3/
+load_run: null
 
 # KEY PARAMS
 predict_dists: False

@@ -9,6 +9,7 @@ import io
 from PIL import Image
 import torch
 from torchvision import transforms
+from huggingface_hub import hf_hub_download
 import matplotlib.pyplot as plt
 import matplotlib
 
@@ -89,8 +90,6 @@ class ObjRelLearntController:
             ), f"{self.goal_source=} requires goal_type=image_mask_enc"
 
         self.pl_outlier_value = 99
-        if "e3d_" in self.config["load_run"]:
-            self.pl_outlier_value = 255
         self.is_pl_normalized = self.config["is_pl_normalized"]
         self.use_vel_filter = self.config["use_vel_filter"]
 
@@ -107,9 +106,14 @@ class ObjRelLearntController:
             use_mask_grad=self.config["use_mask_grad"],
             **kwargs,
         )
-
+        modelpath = self.config["load_run"]
+        if modelpath is None:
+            logger.info("Downloading model from HuggingFace Hub...")
+            modelpath = hf_hub_download(
+                repo_id="oravus/ObjectReact", filename="latest.pth"
+            )
         _ = resume_model(
-            self.config, self.model, load_project_folder=self.config["load_run"]
+            self.config, self.model, load_project_folder=Path(modelpath).parent
         )
         self.model = self.model.to(self.device)
         self.model.eval()
