@@ -52,7 +52,6 @@ In `./data/`, sym link the following downloads as subdirs: `hm3d v0.2`, `instanc
 
 In `model_weights/`:
 
-- ObjectReact: Download pretrained model from [here](https://drive.google.com/file/d/1L0PUetzZrTrjnLFQbU4G0qT2XpxqRQ0Z/view?usp=sharing) [14 MB].
 - TANGO: Download depth anything model from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints_metric_depth) [1.3 GB] and its base vit from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints) [1.3 GB].
 - PixNav: Download the original authors' provided checkpoint from our hosting [here](https://drive.google.com/file/d/1QcnwulbuGEsZX_4qmsH9jD4_iWfUNXeX/view?usp=sharing) [208 MB].
 
