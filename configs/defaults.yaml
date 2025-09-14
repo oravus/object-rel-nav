@@ -83,6 +83,14 @@ goal_gen:
   # tracker
   do_track: False
 
+controller:
+  config_file: "configs/controller/object_react_controller.yaml"
+  # following only used with real_remote
+  v_min: 0.05
+  v_max: 0.2
+  w_min: -0.3
+  w_max: 0.3
+
 # CoRL2025 specific
 episode_blacklists:
   all_tasks: [
