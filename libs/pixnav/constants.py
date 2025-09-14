@@ -10,5 +10,5 @@ EPISODE_PREFIX = "{YOUR_DATASET_DIR}"
 # SAM_ENCODER_VERSION = "vit_h"
 # SAM_CHECKPOINT_PATH = "./checkpoints/sam_vit_h_4b8939.pth"
 # policy checkpoint
-POLICY_CHECKPOINT = "<main_dir>/model_weights/pixelnav_A.ckpt"
+POLICY_CHECKPOINT = "model_weights/pixelnav_A.ckpt"
 
