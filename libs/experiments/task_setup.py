@@ -1096,8 +1096,9 @@ def init_results_dir_and_save_cfg(args, default_logger=None):
     if args.log_robot:
         save_dict(path_results_folder / "args.yaml", vars(args))
         if args.method.lower() == "learnt":
+            args_filepath = args.controller["config_file"]
             shutil.copyfile(
-                args.controller["config_file"], path_results_folder / "gnm_test.yaml"
+                args_filepath, path_results_folder / Path(args_filepath).name
             )
 
     return path_results_folder

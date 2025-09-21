@@ -91,7 +91,7 @@ def get_default_args():
 
         },
         'controller': {
-            'config_file': 'configs/gnm_test.yaml',
+            'config_file': 'configs/controller/object_react_controller.yaml',
             'v_min': 0.0,
             'v_max': 0.5,
             'w_min': -0.5,
