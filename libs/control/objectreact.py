@@ -43,7 +43,7 @@ from libs.control.object_react.train.vint_train.training.train_utils import (
 from libs.control.object_react.train.vint_train.data.data_utils import (
     resize_and_aspect_crop,
 )
-from libs.control.object_react.train.vint_train.objectreact_dataloader import (
+from libs.control.object_react.train.vint_train.models.object_react.dataloader import (
     generate_positional_encodings,
     normalize_pls,
     get_masks_gradient,
