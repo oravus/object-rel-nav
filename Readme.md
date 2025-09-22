@@ -82,6 +82,8 @@ To create a topological graph given a folder of RGB images, please see/run this 
 python scripts/create_maps_hm3d.py ./data/hm3d_iin_val/ fast_sam None 0 1
 ```
 
+#### Training
+Please see instructions [here](https://github.com/oravus/object-react?tab=readme-ov-file#train).
 
 ### Cite
 ObjectReact:
