@@ -5,7 +5,10 @@ Official code release to test different controllers / trajectory planners.
 #### Environment
 
 <details>
-  <summary> Setup Conda/Mamba environment with torch, habitat etc. </summary>
+  <summary> Setup conda environment (with habitat & ultralytics)
+
+  (see [this](https://github.com/oravus/object-react?tab=readme-ov-file#environment) to setup without habitat)
+</summary>
 
 ```
 conda create -n nav
