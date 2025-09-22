@@ -119,7 +119,7 @@ class Episode:
         if self.args.env == "sim":
             self.vis.draw_teach_run(self.agent_states)
 
-            if self.args.task_type in ["alt_goal", "alt_goal_v2"]:
+            if self.args.task_type in ["alt_goal"]:
                 self.vis.draw_goal(self.vis.sim_to_tdv(self.final_goal_position))
 
             if self.args.reverse:
@@ -196,7 +196,7 @@ class Episode:
             # set default, as it is not well defined for the reverse setting
             self.final_goal_image_idx = len(self.agent_states) - 1
 
-        elif self.args.task_type in ["alt_goal", "alt_goal_v2"]:
+        elif self.args.task_type in ["alt_goal"]:
             self.final_goal_image_idx, _, goal_instance_id = (
                 utils_data.get_goal_info_alt_goal(
                     self.path_episode, self.args.task_type
@@ -509,7 +509,7 @@ class Episode:
                     },
                 )
 
-        elif self.args.task_type in ["alt_goal", "alt_goal_v2"]:
+        elif self.args.task_type in ["alt_goal"]:
             self.goal_object_id = utils_data.get_goal_info_alt_goal(
                 self.path_episode, self.args.task_type
             )[-1]

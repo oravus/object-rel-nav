@@ -63,8 +63,6 @@ def find_reverse_traverse_goal(agent, sim, final_goal_state, map_graph, instance
 def get_goal_info_alt_goal(mapPath, task_type):
 
     if task_type == 'alt_goal':
-        goal_info_filename = 'seen_but_unvisited_object.npy'
-    elif task_type == 'alt_goal_v2':
         goal_info_filename = 'seen_but_unvisited_object_v2.npy'
     else:
         raise ValueError
@@ -103,7 +101,7 @@ def get_goalMaskBinary(mapPath, task_type):
     if task_type in ["original", "via_alt_goal"]:
         goalImgIdx, instance_mask, goal_instance_id = get_goal_info(mapPath)
 
-    elif task_type in ['alt_goal', 'alt_goal_v2']:
+    elif task_type in ['alt_goal']:
         goalImgIdx, instance_mask, goal_instance_id = get_goal_info_alt_goal(mapPath, task_type)
 
     else:

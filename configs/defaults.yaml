@@ -112,7 +112,7 @@ episode_blacklists:
     # Entire floor of a room is the goal (already globally ignored):
     "LT9Jq6dN3Ea_0000000_tv_monitor_21_",
   ]
-  alt_goal_v2: [
+  alt_goal: [
     "5cdEh9F2hJL_0000000_toilet_36_",
     "7MXmsvcQjpJ_0000000_chair_16_",
     "CrMo8WxCyVb_0000000_toilet_33_",
