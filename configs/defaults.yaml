@@ -9,7 +9,7 @@ step_idx: 3 # step index for episodes
 end_idx: 108 # end index for episodes
 
 reverse: False # Ignore
-task_type: "original" # refers to the teach-and-repeat / imitate task
+task_type: "original" # from ["original", "alt_goal", "via_alt_goal"] corresponding to ["Imitate", "AltGoal", "Shortcut"] tasks in the ObjectReact paper. For the reverse task, set reverse True for task_type original. 
 use_gt_localization: True # if True, oracle decides the localizedImgIdx
 env: "sim" # TODO: include "real"
 
