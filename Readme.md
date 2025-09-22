@@ -44,7 +44,14 @@ Download official Habitat data and our benchmark trajectories.
 In `./data/`, sym link the following downloads as subdirs: `hm3d v0.2`, `instance_imagenav_hm3d_v3`, and `hm3d_iin_val`.
 - Download official `hm3d v0.2` following instructions [here](https://github.com/matterport/habitat-matterport-3dresearch).
 - Download official `InstanceImageNav` challenge dataset from [here](https://dl.fbaipublicfiles.com/habitat/data/datasets/imagenav/hm3d/v3/instance_imagenav_hm3d_v3.zip) (Direct Link | ~512 mb)
-- Download our test trajectory data `hm3d_iin_val` from [here](https://drive.google.com/file/d/18yhsuz52QvWQ8gQHeWXLAaqoa6T6jk0O/view?usp=sharing). 
+
+Download our test trajectory data [`hm3d_iin_val`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/hm3d_iin_val.zip) and [`maps_via_alt_goal`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/maps_via_alt_goal.zip) (for the `shortcut` task) from HuggingFace:
+```
+cd data/
+huggingface-cli download oravus/objectreact_hm3d_iin --repo-type dataset --local-dir ./ --include "evaluation/**"
+unzip -q 'evaluation/*.zip'
+rm -r evaluation
+```
 
 </details>
 
@@ -57,6 +64,7 @@ In `model_weights/`:
 
 - TANGO: Download depth anything model from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints_metric_depth) [1.3 GB] and its base vit from [here](https://huggingface.co/spaces/LiheYoung/Depth-Anything/tree/main/checkpoints) [1.3 GB].
 - PixNav: Download the original authors' provided checkpoint from our hosting [here](https://drive.google.com/file/d/1QcnwulbuGEsZX_4qmsH9jD4_iWfUNXeX/view?usp=sharing) [208 MB].
+- ObjectReact: Downloaded automatically from [HuggingFace](https://huggingface.co/oravus/ObjectReact/blob/main/latest.pth) [18MB].
 
 </details>
 
