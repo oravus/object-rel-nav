@@ -1,8 +1,8 @@
-## Object-Relative Navigation: [ObjectReact [CoRL'25]](https://object-react.github.io/) | [TANGO [ICRA'25]](https://podgorki.github.io/TANGO/) | [RoboHop [ICRA'24]](https://oravus.github.io/RoboHop/)
+# Object-Relative Navigation: [ObjectReact [CoRL'25]](https://object-react.github.io/) | [TANGO [ICRA'25]](https://podgorki.github.io/TANGO/) | [RoboHop [ICRA'24]](https://oravus.github.io/RoboHop/)
 Official code release to test different controllers / trajectory planners.
 
-## Setup
-#### Environment
+# Setup
+### Environment
 
 <details>
   <summary> Setup conda environment (with habitat & ultralytics)
@@ -35,7 +35,7 @@ pip install -e habitat-lab
 ```
 </details>
 
-#### Data
+### Data
 <details>
 <summary>
 Download official Habitat data and our benchmark trajectories.
@@ -55,8 +55,8 @@ rm -r evaluation
 
 </details>
 
-#### Models
-<details> 
+### Models
+<details>
 <summary> Download controller models.
  </summary>
 
@@ -68,8 +68,8 @@ In `model_weights/`:
 
 </details>
 
-## Experiment
-#### Navigation
+# Experiment
+### NAVIGATE
 For quickly running a navigation episode using robohop controller (uses `configs/defaults.yaml`, with comments explaining the parameters):
 
 ```
@@ -85,18 +85,24 @@ python main.py -c configs/object_react.yaml
 
 Check the output dir `./out/` for `output.log` and visualizations. The above config uses ground truth perception for a quick start, set `goal_source='topological'` and `edge_weight_str='e3d_max'` to use inferred perception.
 
+### EVAL
+```
+python scripts/evaluate_objecreact.py <path to dir containing timestamped results subdirs>
+```
 
-#### Mapping: Topological Object-Level Graph
+### MAP: Topological Object-Level Graph
 To create a topological graph given a folder of RGB images, please see/run this example script:
 
 ```
 python scripts/create_maps_hm3d.py ./data/hm3d_iin_val/ fast_sam None 0 1
 ```
 
-#### Training
+
+
+### TRAIN
 Please see instructions [here](https://github.com/oravus/object-react?tab=readme-ov-file#train).
 
-### Cite
+# Cite
 ObjectReact:
 ```
 @inproceedings{garg2025objectreact,
