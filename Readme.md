@@ -42,16 +42,24 @@ Download official Habitat data and our benchmark trajectories.
 </summary>
 
 In `./data/`, sym link the following downloads as subdirs: `hm3d v0.2`, `instance_imagenav_hm3d_v3`, and `hm3d_iin_val`.
-- Download official `hm3d v0.2` following instructions [here](https://github.com/matterport/habitat-matterport-3dresearch).
+- Download official `hm3d v0.2` following instructions [here](https://github.com/matterport/habitat-matterport-3dresearch) (a free Matterport account required), eg val data for testing, specifically:
+  - **hm3d-val-glb-v0.2.tar** (4G) - [Download](https://api.matterport.com/resources/habitat/hm3d-val-glb-v0.2.tar)
+  - **hm3d-val-habitat-v0.2.tar** (3.3G) - [Download](https://api.matterport.com/resources/habitat/hm3d-val-habitat-v0.2.tar)
+  - **hm3d-val-semantic-annots-v0.2.tar** (2.0G) - [Download](https://api.matterport.com/resources/habitat/hm3d-val-semantic-annots-v0.2.tar)
+  - **hm3d-val-semantic-configs-v0.2.tar** (40K) - [Download](https://api.matterport.com/resources/habitat/hm3d-val-semantic-configs-v0.2.tar)
+
+  These downloaded `hm3d-val*` can be extracted to `./data/hm3d_v0.2/val/`
+
+
 - Download official `InstanceImageNav` challenge dataset from [here](https://dl.fbaipublicfiles.com/habitat/data/datasets/imagenav/hm3d/v3/instance_imagenav_hm3d_v3.zip) (Direct Link | ~512 mb)
 
-Download our test trajectory data [`hm3d_iin_val`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/hm3d_iin_val.zip) and [`maps_via_alt_goal`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/maps_via_alt_goal.zip) (for the `shortcut` task) from HuggingFace:
-```
-cd data/
-huggingface-cli download oravus/objectreact_hm3d_iin --repo-type dataset --local-dir ./ --include "evaluation/**"
-unzip -q 'evaluation/*.zip'
-rm -r evaluation
-```
+- Download *our* test trajectory data [`hm3d_iin_val`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/hm3d_iin_val.zip) and [`maps_via_alt_goal`](https://huggingface.co/datasets/oravus/objectreact_hm3d_iin/blob/main/evaluation/maps_via_alt_goal.zip) (for the `shortcut` task) from HuggingFace:
+  ```
+  cd data/
+  huggingface-cli download oravus/objectreact_hm3d_iin --repo-type dataset --local-dir ./ --include "evaluation/**"
+  unzip -q 'evaluation/*.zip'
+  rm -r evaluation
+  ```
 
 </details>
 
